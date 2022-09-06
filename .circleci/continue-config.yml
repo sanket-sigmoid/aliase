@@ -9,7 +9,7 @@ defaults: &defaults
     jobs:
       - project_one
 
-defaults2: &test
+defaults2: &defaults2
 build-2:
     when: 
       or: 

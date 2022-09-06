@@ -1,5 +1,5 @@
 version: 2.1
-aliases:
+references:
 - &defaults
   build-1:
     when: 

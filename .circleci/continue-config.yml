@@ -9,6 +9,15 @@ defaults: &defaults
     jobs:
       - project_one
 
+defaults2: &defaults
+build-2:
+    when: 
+      or: 
+        - << pipeline.parameters.project-two >>
+        - << pipeline.parameters.run-them-all >>     
+    jobs:
+      - project_two
+
 executors:
   base:
     docker:
@@ -58,13 +67,7 @@ jobs:
 workflows:
   <<: *defaults
       
-  build-2:
-    when: 
-      or: 
-        - << pipeline.parameters.project-two >>
-        - << pipeline.parameters.run-them-all >>     
-    jobs:
-      - project_two
+  <<: *defaults2
       
   build-3:
     when: 

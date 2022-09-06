@@ -1,6 +1,6 @@
 version: 2.1
 aliases:
-defaults: &defaults
+- &defaults
   build-1:
     when: 
       or: 
@@ -9,7 +9,7 @@ defaults: &defaults
     jobs:
       - project_one
 
-defaults2: &defaults2
+- &defaults2
 build-2:
     when: 
       or: 

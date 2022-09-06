@@ -65,9 +65,9 @@ jobs:
               echo "all"   
               
 workflows:
-  *defaults
-  >>
-  *defaults2
+  - *defaults
+  
+  - *defaults2
       
   build-3:
     when: 

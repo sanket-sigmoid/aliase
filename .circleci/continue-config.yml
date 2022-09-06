@@ -64,10 +64,10 @@ jobs:
               
 workflows:
   build-1:
- <<: *defaults
+    <<: *defaults
   
   build-2:
- <<: *defaults2
+    <<: *defaults2
       
   build-3:
     when: 

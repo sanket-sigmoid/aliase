@@ -1,5 +1,5 @@
 version: 2.1
-
+aliases:
 defaults: &defaults
   build-1:
     when: 
@@ -65,9 +65,9 @@ jobs:
               echo "all"   
               
 workflows:
-  *defaults
+  <<: *defaults
       
-  *defaults2
+  <<: *defaults2
       
   build-3:
     when: 

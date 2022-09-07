@@ -2,9 +2,9 @@ version: 2.1
 references:
 - &build-1
   when: 
-      or: 
-        - << pipeline.parameters.project-one >>
-        - << pipeline.parameters.run-them-all >> 
+    or: 
+      - << pipeline.parameters.project-one >>
+      - << pipeline.parameters.run-them-all >> 
     jobs:
       - project_one
 - &build-2

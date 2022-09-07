@@ -1,10 +1,14 @@
 version: 2.1
 references:
-- &defaults
+- &build-1
+  when: 
+      or: 
+        - << pipeline.parameters.project-one >>
+        - << pipeline.parameters.run-them-all >> 
     jobs:
       - project_one
 
-- &defaults2
+- &build-2
     when: 
       or: 
         - << pipeline.parameters.project-two >>
@@ -60,10 +64,6 @@ jobs:
               
 workflows:
   build-1:
-    when: 
-      or: 
-        - << pipeline.parameters.project-one >>
-        - << pipeline.parameters.run-them-all >> 
     <<: *defaults
   
   build-2:

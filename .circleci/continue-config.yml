@@ -34,8 +34,32 @@ parameters:
     type: boolean
     default: false
     
-# Include another YAML file for job configuration
-<<: *myJobConfig
+jobs:
+  project_one:
+      executor: base
+      steps:
+        - run: 
+            command: |
+              echo "project one"
+              
+  project_two: 
+      executor: base
+      steps:
+        - run: 
+            command: |
+              echo "project two" 
+  project_three: 
+      executor: base
+      steps:
+        - run: 
+            command: |
+              echo "project three"
+  all_projects: 
+      executor: base
+      steps:
+        - run: 
+            command: |
+              echo "all"   
               
 workflows:
   build-1:

@@ -1,0 +1,28 @@
+# job-config.yml
+myJobConfig:
+  jobs:
+    project_one:
+        executor: base
+        steps:
+          - run: 
+              command: |
+                echo "project one"
+                
+    project_two: 
+        executor: base
+        steps:
+          - run: 
+              command: |
+                echo "project two" 
+    project_three: 
+        executor: base
+        steps:
+          - run: 
+              command: |
+                echo "project three"
+    all_projects: 
+        executor: base
+        steps:
+          - run: 
+              command: |
+                echo "all"   

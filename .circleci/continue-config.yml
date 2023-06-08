@@ -1,18 +1,58 @@
 version: 2.1
-
-# Include references
-!include references.yaml
-
-# Include jobs
-!include jobs.yaml
+references:
+- &build-1
+  when: 
+    or: 
+      - << pipeline.parameters.project-one >>
+      - << pipeline.parameters.run-them-all >> 
+  jobs:
+    - project_one
+- &build-2
+    when: 
+      or: 
+        - << pipeline.parameters.project-two >>
+        - << pipeline.parameters.run-them-all >>     
+    jobs:
+      - project_two
 
 executors:
   base:
     docker:
       - image: cimg/base:stable
 
-# Include parameters
-!include parameters.yaml
-
-# Include workflows
-!include workflows.yaml
+parameters:
+  project-one:
+    type: boolean
+    default: false
+  project-two:
+    type: boolean
+    default: false
+  project-three:
+    type: boolean
+    default: false
+  run-them-all:
+    type: boolean
+    default: false
+    
+# Include another YAML file for job configuration
+<<: *myJobConfig
+              
+workflows:
+  build-1:
+    <<: *build-1
+  
+  build-2:
+    <<: *build-2
+      
+  build-3:
+    when: 
+      or: 
+        - << pipeline.parameters.project-three >>
+        - << pipeline.parameters.run-them-all >> 
+    jobs:
+      - project_three
+      
+  build-shared-other:
+    when: << pipeline.parameters.run-them-all >>
+    jobs:
+      - all_projects

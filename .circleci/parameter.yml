@@ -1,0 +1,13 @@
+parameters:
+  project-one:
+    type: boolean
+    default: false
+  project-two:
+    type: boolean
+    default: false
+  project-three:
+    type: boolean
+    default: false
+  run-them-all:
+    type: boolean
+    default: false

@@ -1,0 +1,16 @@
+workflows:
+  build-1:
+    <<: *build-1
+  build-2:
+    <<: *build-2
+  build-3:
+    when: 
+      or: 
+        - << pipeline.parameters.project-three >>
+        - << pipeline.parameters.run-them-all >> 
+    jobs:
+      - project_three
+  build-shared-other:
+    when: << pipeline.parameters.run-them-all >>
+    jobs:
+      - all_projects

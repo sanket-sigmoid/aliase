@@ -1,91 +1,18 @@
 version: 2.1
 
+# Include references
+!include references.yaml
 
-# Include additional configuration files
-config:
-  - .circleci/steps.yml
-  - .circleci/workflows.yml
-  - .circleci/jobs.yml
-
-  
-references:
-- &build-1
-  when: 
-    or: 
-      - << pipeline.parameters.project-one >>
-      - << pipeline.parameters.run-them-all >> 
-  jobs:
-    - project_one
-- &build-2
-    when: 
-      or: 
-        - << pipeline.parameters.project-two >>
-        - << pipeline.parameters.run-them-all >>     
-    jobs:
-      - project_two
+# Include jobs
+!include jobs.yaml
 
 executors:
   base:
     docker:
       - image: cimg/base:stable
 
-parameters:
-  project-one:
-    type: boolean
-    default: false
-  project-two:
-    type: boolean
-    default: false
-  project-three:
-    type: boolean
-    default: false
-  run-them-all:
-    type: boolean
-    default: false
-    
-jobs:
-  project_one:
-      executor: base
-      steps:
-        - run: 
-            command: |
-              echo "project one"
-              
-  project_two: 
-      executor: base
-      steps:
-        - run: 
-            command: |
-              echo "project two" 
-  project_three: 
-      executor: base
-      steps:
-        - run: 
-            command: |
-              echo "project three"
-  all_projects: 
-      executor: base
-      steps:
-        - run: 
-            command: |
-              echo "all"   
-              
-workflows:
-  build-1:
-    <<: *build-1
-  
-  build-2:
-    <<: *build-2
-      
-  build-3:
-    when: 
-      or: 
-        - << pipeline.parameters.project-three >>
-        - << pipeline.parameters.run-them-all >> 
-    jobs:
-      - project_three
-      
-  build-shared-other:
-    when: << pipeline.parameters.run-them-all >>
-    jobs:
-      - all_projects
+# Include parameters
+!include parameters.yaml
+
+# Include workflows
+!include workflows.yaml

@@ -1,0 +1,7 @@
+
+when: 
+  or: 
+    - << pipeline.parameters.project-three >>
+    - << pipeline.parameters.run-them-all >> 
+jobs:
+  - project_three

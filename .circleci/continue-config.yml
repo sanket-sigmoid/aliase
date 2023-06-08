@@ -69,13 +69,8 @@ workflows:
     <<: *build-2
       
   build-3:
-    when: 
-      or: 
-        - << pipeline.parameters.project-three >>
-        - << pipeline.parameters.run-them-all >> 
-    jobs:
-      - project_three
-      
+    - !include .circleci/jobs.yaml
+    
   build-shared-other:
     when: << pipeline.parameters.run-them-all >>
     jobs:

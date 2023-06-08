@@ -1,4 +1,13 @@
 version: 2.1
+
+
+# Include additional configuration files
+config:
+  - .circleci/steps.yml
+  - .circleci/workflows.yml
+  - .circleci/jobs.yml
+
+  
 references:
 - &build-1
   when: 
